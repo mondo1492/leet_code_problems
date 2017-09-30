@@ -112,3 +112,25 @@ def letter_combinations(digits)
     end
     arr
 end
+def merge_two_lists(l1, l2)
+    dummy_head = ListNode.new(0)
+    new_list = dummy_head
+    current_node1 = l1
+    current_node2 = l2
+    while current_node1 && current_node2
+
+        if current_node1.val < current_node2.val
+            new_list.next = current_node1
+
+            current_node1 = current_node1.next
+        else
+            new_list.next = current_node2
+            current_node2 = current_node2.next
+        end
+        new_list = new_list.next
+    end
+     new_list.next = current_node1 if current_node1
+    new_list.next = current_node2 if current_node2
+
+    dummy_head.next
+end
