@@ -77,10 +77,10 @@ end
 def unique_paths(m, n)
   #create matrix
   #add up the up and left cells
-  matrix = Array.new(m) { Array.new(n, 1)}
+  matrix = Array.new(m) { Array.new(n, 1) }
 
-  matrix[1..-1].each_with_index do |x, i1|
-    matrix[1..-1].each_with_index do |y, i2|
+  matrix[0..-2].each_index do |i1|
+    matrix[i1][0..-2].each_index do |i2|
       matrix[i1 + 1][i2 + 1] = matrix[i1][i2 + 1] + matrix[i1 + 1][i2]
     end
   end
@@ -88,4 +88,4 @@ def unique_paths(m, n)
 
 end
 
-p unique_paths(4, 4)
+p unique_paths(3, 7)
