@@ -107,7 +107,7 @@ def zigzag_level_order(root)
       if tmp_depth.even?
         result.push(tmp_array)
       else
-        result.concat([tmp_array.reverse])
+        result.push([tmp_array.reverse])
       end
       tmp_array = []
       tmp_depth += 1
@@ -122,4 +122,59 @@ def zigzag_level_order(root)
     end
   end
   root
+end
+
+#105
+# Construct Binary Tree from Preorder and Inorder Traversal
+#Given preorder and inorder traversal of a tree, construct the binary tree.
+
+# def build_tree(preorder, inorder)
+#   root = preorder[0]
+#   split_idx = inorder.index_of(root)
+#   left = inorder[0...split_idx]
+#   right = inorder[split_idx + 1.. -1]
+#
+#
+#   result_root = TreeNode.new(root)
+#   left_left = []
+#   left_right = []
+#   idx = 1
+#
+#   visited = []
+#   current_node = result_root
+#   preorder[1..-1].each do |num|
+#     in_idx = inorder.index_of(num)
+#     current_node.left = left[in_idx - 1] unless in_idx == 0
+#   end
+#
+#   # while result.length < inorder.length
+#   #   until left_left.length <= 1 || left_right.length <= 1
+#   #     left[]
+#   #   end
+#   # end
+#
+# end
+
+# def build_tree(preorder, inorder)
+#   root = preorder[0]
+#   root_idx = inorder.index_of(root)
+#   left = inorder[0...root_idx]
+#   current_root = TreeNode.new(root)
+#   right = inorder[root_idx + 1 .. -1]
+#   helper(left, right)
+# end
+#
+# def helper_left(current_node,left, right)
+#   return left if left.length == 1
+#   return right if right.length == 1
+#   helper(left, right)
+# end
+#
+# def helper_right(current_node,left, right)
+#   return left if left.length == 1
+#   return right if right.length == 1
+#   helper(left, right)
+# end
+def build_tree(preorder, inorder)
+
 end
