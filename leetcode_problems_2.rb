@@ -74,6 +74,7 @@ def go_right(current_pos)
   [new_x, new_y]
 end
 
+#62
 def unique_paths(m, n)
   #create matrix
   #add up the up and left cells
@@ -89,3 +90,36 @@ def unique_paths(m, n)
 end
 
 p unique_paths(3, 7)
+
+#66
+#Given a binary tree, return the zigzag level order traversal of its
+#nodes' values. (ie, from left to right, then right to left for the
+#next level and alternate between).
+def zigzag_level_order(root)
+  return [] unless root.nil?
+  result = []
+  queue = [[root, 0]]
+  tmp_array = [root]
+  tmp_depth = 0
+  until queue.empty?
+    current_node, current_depth = queue.shift
+    if current_depth > tmp_depth
+      if tmp_depth.even?
+        result.push(tmp_array)
+      else
+        result.concat([tmp_array.reverse])
+      end
+      tmp_array = []
+      tmp_depth += 1
+    end
+    if current_node.left
+      queue.push([current_node.left, current_depth + 1])
+      tmp_array.push(current_node.left)
+    end
+    if current_node.right
+      queue.push([current_node.right, current_depth + 1])
+      tmp_array.push(current_node.right)
+    end
+  end
+  root
+end
