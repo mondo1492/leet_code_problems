@@ -178,3 +178,46 @@ end
 def build_tree(preorder, inorder)
 
 end
+
+def num_decodings(s)
+    return 0 if s.to_i == 0
+    alphabet = ('a'..'z').to_a
+    alphabet.unshift('0')
+    stored = []
+    ten_or_twenty = false
+    s.chars.each_with_index do |num, idx|
+        p stored
+        if ten_or_twenty
+            ten_or_twenty = false
+            next
+        end
+        if s[idx + 1].to_i == 0 && (idx + 1) < s.length
+            if stored.empty?
+                stored.push([alphabet[s[idx].to_i * 10], s[idx].to_i * 10])
+                ten_or_twenty = true
+            else
+                stored.each do |letter_with_num|
+                    letter_with_num[0] += alphabet[s[idx].to_i * 10]
+                    letter_with_num[1] = s[idx].to_i * 10
+                end
+                ten_or_twenty = true
+            end
+        elsif idx == 0
+            stored.push([alphabet[num.to_i], num.to_i])
+        else
+            arr_to_add = []
+            stored.each do |letter_with_num|
+                string, last_val = letter_with_num
+                if letter_with_num[1] == 1
+                    arr_to_add.push(alphabet[num.to_i + last_val])
+                elsif letter_with_num[1] == 1 && num <= 6
+                    arr_to_add.push(alphabet[num.to_i + last_val])
+                else
+                    letter_with_num[0] += alphabet[num.to_i ]
+                end
+            end
+            stored.concat(arr_to_add)
+        end
+    end
+    stored.count
+end
