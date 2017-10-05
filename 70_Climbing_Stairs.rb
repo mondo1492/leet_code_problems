@@ -17,13 +17,13 @@ def climb_stairs(n)
 end
 
 def climb_stairs(n)
-    path = [0, 1, 2]
-    idx = 3
-    while idx <= n
-      path[idx] = path[idx - 1] + path[idx - 2]
-      idx += 1
-    end
-    path[n]
+  path = [0, 1, 2]
+  idx = 3
+  while idx <= n
+    path[idx] = path[idx - 1] + path[idx - 2]
+    idx += 1
+  end
+  path[n]
 end
 
 p climb_stairs(1)
