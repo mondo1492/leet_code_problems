@@ -1,6 +1,5 @@
 def single_number(nums)
     nums.sort!
-    count = 0
     idx = 0
     ans = []
     while idx < nums.length
